@@ -1,0 +1,6 @@
+<?php
+	// Token used to communicate with the NinjaBlock API.
+	// Rename this file removing the .dist part (making it ledstrip-conf.php)
+	// And replace insert-token-here with your API token.
+	$userAccessToken = "insert-token-here";
+?>
