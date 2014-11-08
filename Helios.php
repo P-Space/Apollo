@@ -14,6 +14,8 @@ $userAccessToken=NULL;
 include("Helios-conf.php.dist");
 include("Helios-conf.php");
 
+$ninja_api_url = "https://api.ninja.is/rest/v0";
+
 if($userAccessToken === NULL || $userAccessToken == "insert-token-here")
 {
 	die("Please enter a valid token");
@@ -23,18 +25,18 @@ if (isset($_POST["state"])){
 
 if ($_POST["state"]=="ALL_ON"){
 for ($x=0; $x<3; $x++) {
-	$url = "https://api.ninja.is/rest/v0/device/0112BB000635_0_0_11?user_access_token=".$userAccessToken;
+	$url = $ninja_api_url."/device/0112BB000635_0_0_11?user_access_token=".$userAccessToken;
 	$handle = curl_init($url);
 	$data = array('DA' => '000111111111111111111100');
 	curl_setopt($handle, CURLOPT_POST, true);
 	curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
 	curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
 	curl_exec($handle);
-sleep(1);
+	sleep(1);
 	$data = array('DA' => '000000000000000000000010');
 	curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
 	curl_exec($handle);
-sleep(1);
+	sleep(1);
 	$data = array('DA' => '110110101101101011011010');
 	curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
 	curl_exec($handle);
@@ -43,7 +45,7 @@ sleep(1);
 
 if ($_POST["state"]=="ALL_OFF"){
 for ($x=0; $x<3; $x++) {
-        $url = "https://api.ninja.is/rest/v0/device/0112BB000635_0_0_11?user_access_token=".$userAccessToken;
+        $url = $ninja_api_url."/device/0112BB000635_0_0_11?user_access_token=".$userAccessToken;
         $handle = curl_init($url);
         $data = array('DA' => '000111111111111111111000');
         curl_setopt($handle, CURLOPT_POST, true);
@@ -62,7 +64,7 @@ sleep(1);
 }
 
 
-$url = "https://api.ninja.is/rest/v0/device/0112BB000635_0_0_11?user_access_token=".$userAccessToken;
+$url = $ninja_api_url."/device/0112BB000635_0_0_11?user_access_token=".$userAccessToken;
 $data = array('DA' => '000000000000000000000000');
 if ($_POST["state"]=="WHITE"){
 $data = array('DA' => '000111111111111111111111');
