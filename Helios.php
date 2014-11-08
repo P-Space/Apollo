@@ -107,13 +107,13 @@ curl_exec($handle);
 
 <script>
 function ledStrip(color){
-	$.post("/ledstrip.php",{state:color});
+	$.post("",{state:color});
 }
 function glassboard(color){
-	$.post("/ledstrip.php",{state:color});
+	$.post("",{state:color});
 }
 function blacklight(color){
-	$.post("/ledstrip.php",{state:color});
+	$.post("",{state:color});
 }
 </script>
 <div class="container" style="padding: 60px 15px 0;">
@@ -214,7 +214,7 @@ setInterval(
 		if(window.toggle){
 			window.color=(window.color+1)%3;
 			console.log("Color["+window.color+"]:"+window.colors[window.color]);
-			$.post("ledstrip.php",{state:window.colors[window.color]})
+			$.post("",{state:window.colors[window.color]})
 		}
 	}, 3000);
 });
