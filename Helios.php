@@ -75,8 +75,17 @@ $data = array('DA' => '000111111111111111111100');
 if ($_POST["state"]=="GREEN"){
 $data = array('DA' => '000111111111111111111010');
 }
+if ($_POST["state"]=="YELLOW"){
+    $data = array('DA' => '000111111111111111111110');
+}
 if ($_POST["state"]=="BLUE"){
 $data = array('DA' => '000111111111111111111001');
+}
+if ($_POST["state"]=="CYAN"){
+    $data = array('DA' => '000111111111111111111011');
+}
+if ($_POST["state"]=="PURPLE"){
+    $data = array('DA' => '000111111111111111111101');
 }
 if ($_POST["state"]=="BLACK"){
 $data = array('DA' => '000111111111111111111000');
@@ -150,6 +159,18 @@ function blacklight(color){
 
 		<br/>
 		<br/>
+
+        <input type="hidden" name="state" value="YELLOW"/>
+        <button class="btn" onclick="ledStrip('YELLOW')">YELLOW	</button>
+
+        <input type="hidden" name="state" value="CYAN"/>
+        <button class="btn" onclick="ledStrip('CYAN')">CYAN	</button>
+
+        <input type="hidden" name="state" value="PURPLE"/>
+        <button class="btn" onclick="ledStrip('PURPLE')">PURPLE	</button>
+
+        <br/>
+        <br/>
 
 		<input type="hidden" name="state" value="WHITE"/>
 		<button class="btn" onclick="ledStrip('WHITE')">ON</button>
