@@ -27,7 +27,7 @@ if ($_POST["state"]=="ALL_ON"){
 for ($x=0; $x<3; $x++) {
 	$url = $ninja_api_url."/device/0112BB000635_0_0_11?user_access_token=".$userAccessToken;
 	$handle = curl_init($url);
-	$data = array('DA' => '000111111111111111111100');
+	$data = array('DA' => '000111111111111111111001');
 	curl_setopt($handle, CURLOPT_POST, true);
 	curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
 	curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
