@@ -1,4 +1,13 @@
 <?php
+
+/*
+Call this php script on startup (we suggest doing this using screen running as a daemon),
+so that it's always running in the background.
+
+*/
+
+
+//Add your own values here. Don't expect it to work with ours :)
 $status_url = "http://p-space.gr/status/";
 $apollo_url = "http://localhost/Apollo/Helios.php";
 $verbose = FALSE;
