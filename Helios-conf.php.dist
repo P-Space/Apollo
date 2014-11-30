@@ -3,4 +3,5 @@
 	// Rename this file removing the .dist part (making it ledstrip-conf.php)
 	// And replace insert-token-here with your API token.
 	$userAccessToken = "insert-token-here";
+	$raspberries = array(array("Foo", "http://raspberry1.ip/blinds.php"), array("Bar", "http://raspberry2.ip/blinds.php"));
 ?>

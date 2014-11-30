@@ -23,7 +23,19 @@ if($userAccessToken === NULL || $userAccessToken == "insert-token-here")
 
 if (isset($_POST["state"])){
 
-if ($_POST["state"]=="ALL_ON"){
+if ($_POST["state"]=="ALL_ON")
+{
+	foreach($raspberries as $raspberry)
+	{
+		$url = $raspberry[1]."?lights=on";
+		$handle = curl_init($url);
+		curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_exec($handle);
+		curl_close($handle);
+	}
+
+
+
 for ($x=0; $x<3; $x++) {
 	$url = $ninja_api_url."/device/0112BB000635_0_0_11?user_access_token=".$userAccessToken;
 	$handle = curl_init($url);
@@ -43,7 +55,18 @@ for ($x=0; $x<3; $x++) {
 }
 }
 
-if ($_POST["state"]=="ALL_OFF"){
+if ($_POST["state"]=="ALL_OFF")
+{
+	foreach($raspberries as $raspberry)
+	{
+		$url = $raspberry[1]."?lights=off";
+		$handle = curl_init($url);
+		curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_exec($handle);
+		curl_close($handle);
+	}
+
+
 for ($x=0; $x<3; $x++) {
         $url = $ninja_api_url."/device/0112BB000635_0_0_11?user_access_token=".$userAccessToken;
         $handle = curl_init($url);
@@ -105,6 +128,14 @@ curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
 curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
 curl_exec($handle);
 }
+else if(isset($_POST["pi"]) && isset($_POST["status"]))
+{
+	$url = $raspberries[$_POST["pi"]][1]."?lights=".$_POST["status"];
+	$handle = curl_init($url);
+	curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_exec($handle);
+	curl_close($handle);
+}
 ?>
 
 <script>
@@ -117,6 +148,11 @@ function glassboard(color){
 function blacklight(color){
 	$.post("",{state:color});
 }
+
+function raspi(pi,status){
+	$.post("",{"pi":pi, "status":status});
+}
+
 </script>
 <div class="container" style="padding: 60px 15px 0;">
 <div class="col-md-12">
@@ -195,6 +231,23 @@ function blacklight(color){
 		<input type="hidden" name="state" value="BLACKLIGHT_ON"/>
 		<button class="btn btn-success" onclick="blacklight('BLACKLIGHT_ON')">ON	</button>
 </div>
+
+<div class="col-md-12">
+	<h1>Raspberry Pi Screens</h1>
+</div>
+<?php
+	$iHateMyself = 0;
+	foreach($raspberries as $raspberry)
+	{
+		echo "<div class='col-md-4'>";
+		echo "<h3>".$raspberry[0]."</h3>";
+		echo "<button class='btn' onclick=\"raspi('".$iHateMyself."', 'off')\">OFF</button>";
+		echo "&nbsp;";
+		echo "<button class='btn' onclick=\"raspi('".$iHateMyself++."', 'on')\">ON</button>";
+		echo "</div>";
+	}
+?>
+
 </div>
 <script type="text/javascript">
 function toggleColors(){
