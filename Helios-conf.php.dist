@@ -1,7 +1,20 @@
 <?php
-	// Token used to communicate with the NinjaBlock API.
-	// Rename this file removing the .dist part (making it ledstrip-conf.php)
-	// And replace insert-token-here with your API token.
-	$userAccessToken = "insert-token-here";
-	$raspberries = array(array("Foo", "http://raspberry1.ip/blinds.php"), array("Bar", "http://raspberry2.ip/blinds.php"));
+
+// Rename this file removing the .dist part (making it Helios-conf.php)
+$raspberries = array(array("Foo", "http://raspberry1.ip/blinds.php"), array("Bar", "http://raspberry2.ip/blinds.php"));
+
+$topics = [
+    "Device1_ON" => "rf",
+    "Device1_OFF" => "rf",
+    "Device2_ON" => "otherTopic",
+    "Device2_OFF" => "otherTopic",
+];
+
+$commands = [
+    "Device1_ON" => "0",
+    "Device1_OFF" => "1",
+    "Device2_ON" => "on",
+    "Device2_OFF" => "off",
+];
+
 ?>
